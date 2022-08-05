@@ -24,7 +24,7 @@ Layer0
 	//---- Color ----
 	g_flModelTintAmount "1.000"
 	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
-	TextureColor "materials/default/default_color.tga"
+	TextureColor "materials/signs/overlays/shipping_container_4_color.png"
 
 	//---- Detail Texture ----
 	g_flDetailBlendFactor "1.000"
@@ -64,5 +64,5 @@ Layer0
 
 	//---- Translucent ----
 	g_flOpacityScale "1.000"
-	TextureTranslucency "materials/signs/overlays/shipping_container_1_trans.png"
+	TextureTranslucency "materials/signs/overlays/shipping_container_4_trans.png"
 }
