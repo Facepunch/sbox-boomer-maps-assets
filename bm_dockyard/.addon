@@ -1,0 +1,18 @@
+{
+  "Title": "Dockyard",
+  "Type": "map",
+  "Org": "facepunch",
+  "Ident": "bm_dockyard",
+  "Schema": 1,
+  "HasAssets": true,
+  "AssetsPath": "",
+  "ResourcePaths": null,
+  "HasCode": false,
+  "CodePath": null,
+  "RootNamespace": null,
+  "Metadata": {
+    "GameSupport": [
+      "facepunch.boomer"
+    ]
+  }
+}

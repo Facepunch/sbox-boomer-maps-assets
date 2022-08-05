@@ -1,0 +1,15 @@
+
+.codegen/
+obj/
+code/accesslist.txt
+.intermediate
+tools_asset_info.bin
+code/Properties/launchSettings.json
+boomer.csproj
+Properties/launchSettings.json
+*.csproj
+.vs
+*.los
+*.sapaths
+*.sareverb
+*.vpk

@@ -1,0 +1,14 @@
+{
+  "Title": "boomer_assets",
+  "Type": "content",
+  "Org": "local",
+  "Ident": "boomer_assets",
+  "Schema": 1,
+  "HasAssets": true,
+  "AssetsPath": "",
+  "ResourcePaths": null,
+  "HasCode": false,
+  "CodePath": null,
+  "RootNamespace": null,
+  "Metadata": {}
+}
