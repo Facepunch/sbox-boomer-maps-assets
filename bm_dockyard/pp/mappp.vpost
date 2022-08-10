@@ -8,7 +8,14 @@
 			m_name = "Saturation/Vibrance 0"
 			m_nOpacityPercent = 100
 			m_bVisible = true
-			m_pLayerMask = null
+			m_pLayerMask = 
+			{
+				_class = "CLayerMask"
+				m_nLumMaskCenter = 209
+				m_nLumMaskWidth = 75
+				m_nLumMaskShape = 22
+				m_bInverted = false
+			}
 			m_nVibrance = 100
 			m_nSaturation = 15
 		},
@@ -25,7 +32,7 @@
 			m_nHueCyan = 0
 			m_nHueBlue = 0
 			m_nHueMagenta = 0
-			m_nSaturationMaster = 0
+			m_nSaturationMaster = 1
 			m_nSaturationRed = 0
 			m_nSaturationYellow = 0
 			m_nSaturationGreen = 0
