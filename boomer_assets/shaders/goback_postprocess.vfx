@@ -171,9 +171,10 @@ PS
         );
 
         float flAspect = (float)g_vRenderTargetSize.y / (float)g_vRenderTargetSize.x;
-
+        float flInternalAspect = (float)g_vInternalResolution.x / (float)g_vInternalResolution.y;
+        
         // Fill our screen with dithering blocks
-        float2 vDitherBlock = (vScreenUv * float2(1.0f, flAspect)) * (g_vInternalResolution.xy / g_vBayerMatrixDim.xy);
+        float2 vDitherBlock = (vScreenUv * float2(1.0f, flAspect)) * ((g_vInternalResolution.xy * float2(1.0f, flInternalAspect)) / g_vBayerMatrixDim.xy);
         vDitherBlock*= (float)g_DitherScale;
         // Build our dither table
         float3 vDithered = DecodeDither(vColorError, vDitherBlock.xy);
