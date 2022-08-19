@@ -108,7 +108,8 @@ PS
 		// If not defined in FinalizePixelMaterial, it defaults to the standard
 		// Shading model.
 		//
-		ShadingModelStandard sm;
+        
+		ShadingModelValveStandard sm;
 		PixelOutput o = FinalizePixelMaterial( i, m, sm );
 
 		#if ( S_MODE_TOOLS_VIS )
