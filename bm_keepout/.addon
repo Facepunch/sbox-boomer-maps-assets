@@ -3,13 +3,13 @@
   "Type": "map",
   "Org": "local",
   "Ident": "bm_keepout",
+  "Tags": null,
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
   "ResourcePaths": null,
   "HasCode": false,
   "CodePath": null,
-  "RootNamespace": null,
   "Metadata": {
     "ProjectTemplate": null
   }

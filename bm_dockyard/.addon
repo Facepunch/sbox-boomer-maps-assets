@@ -3,16 +3,19 @@
   "Type": "map",
   "Org": "facepunch",
   "Ident": "bm_dockyard",
+  "Tags": "",
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
   "ResourcePaths": null,
   "HasCode": false,
   "CodePath": null,
-  "RootNamespace": null,
   "Metadata": {
     "GameSupport": [
       "facepunch.boomer"
-    ]
+    ],
+    "Summary": "",
+    "Description": "",
+    "Public": true
   }
 }
