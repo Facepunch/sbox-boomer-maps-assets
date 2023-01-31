@@ -1,0 +1,32 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/blendable_model_tint.shader"
+
+	//---- Layer A Triplanar UV ----
+	F_LAYERA_TRIPLANAR 1
+
+	g_flDirectionalLightmapMinZ "0.050"
+	g_flDirectionalLightmapStrength "1.000"
+	TriplanarScale "-400.000"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Material A ----
+	g_flTintColorA "[1.000000 1.000000 1.000000 0.000000]"
+	TextureAmbientOcclusionA "materials/cliff/cliff_wall_01_ao.tga"
+	TextureBlendMaskA "materials/default/default_blend.tga"
+	TextureColorA "materials/cliff/cliff_wall_01_color.tga"
+	TextureMetalnessA "materials/default/default_metal.tga"
+	TextureNormalA "materials/cliff/cliff_wall_01_normal.tga"
+	TextureRoughnessA "materials/cliff/cliff_wall_01_rough.tga"
+	TextureTintMaskA "materials/default/default.tga"
+
+	SystemAttributes
+	{
+		WorldMappingWidth "2048"
+		WorldMappingHeight "2048"
+	}
+}
