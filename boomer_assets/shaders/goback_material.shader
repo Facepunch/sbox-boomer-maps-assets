@@ -3,8 +3,7 @@
 //=========================================================================================================================
 HEADER
 {
-	CompileTargets = ( IS_SM_50 && ( PC || VULKAN ) );
-	Description = "Go back - Material";
+    Description = "Go back - Material";
 }
 
 //=========================================================================================================================
@@ -20,17 +19,17 @@ FEATURES
 //=========================================================================================================================
 MODES
 {
-    VrForward();													// Indicates this shader will be used for main rendering
-    Depth( S_MODE_DEPTH ); 									// Shader that will be used for shadowing and depth prepass
-    ToolsVis( S_MODE_TOOLS_VIS ); 									// Ability to see in the editor
-    ToolsWireframe( "vr_tools_wireframe.vfx" ); 					// Allows for mat_wireframe to work
-	ToolsShadingComplexity( "vr_tools_shading_complexity.vfx" ); 	// Shows how expensive drawing is in debug view
+    VrForward();                                                    // Indicates this shader will be used for main rendering
+    Depth( S_MODE_DEPTH );                                     // Shader that will be used for shadowing and depth prepass
+    ToolsVis( S_MODE_TOOLS_VIS );                                     // Ability to see in the editor
+    ToolsWireframe( "vr_tools_wireframe.vfx" );                     // Allows for mat_wireframe to work
+    ToolsShadingComplexity( "vr_tools_shading_complexity.vfx" );     // Shows how expensive drawing is in debug view
 }
 
 //=========================================================================================================================
 COMMON
 {
-	#include "common/shared.hlsl"
+    #include "common/shared.hlsl"
 
     float g_flAffineAmount< Range(0.0f, 1.0f); Default(0.2f); UiGroup( "Go Back Settings,10/10" ); >;
 }
@@ -39,31 +38,31 @@ COMMON
 
 struct VertexInput
 {
-	#include "common/vertexinput.hlsl"
+    #include "common/vertexinput.hlsl"
 };
 
 //=========================================================================================================================
 
 struct PixelInput
 {
-	#include "common/pixelinput.hlsl"
+    #include "common/pixelinput.hlsl"
 };
 
 //=========================================================================================================================
 
 VS
 {
-	#include "common/vertex.hlsl"
-	
+    #include "common/vertex.hlsl"
+    
     int g_RoundToDecimalPlace< Range(0, 10); Default(0); UiGroup( "Go Back Settings,10/10" ); >;
     float g_flSnapScale< Range(1.0f, 5.0f); Default(2.0f); UiGroup( "Go Back Settings,10/10" ); >;
 
     //
-	// Main
-	//
-	PixelInput MainVs( INSTANCED_SHADER_PARAMS( VS_INPUT i ) )
-	{
-		PixelInput o = ProcessVertex( i );
+    // Main
+    //
+    PixelInput MainVs( INSTANCED_SHADER_PARAMS( VS_INPUT i ) )
+    {
+        PixelInput o = ProcessVertex( i );
 
         // Vertex Snapping
         float flRound = pow(10, g_RoundToDecimalPlace) * g_flSnapScale;
@@ -72,8 +71,8 @@ VS
         // Affine texture mapping
         o.vTextureCoords *= lerp(1.0f, o.vPositionPs.w, g_flAffineAmount * 0.005f);
 
-		return FinalizeVertex( o );
-	}
+        return FinalizeVertex( o );
+    }
 }
 
 //=========================================================================================================================
@@ -90,44 +89,44 @@ PS
     #if ( S_MODE_DEPTH )
         #define MainPs Disabled
     #endif
-	
+    
     //
-	// Main
-	//
-	PixelOutput MainPs( PixelInput i )
-	{
+    // Main
+    //
+    float4 MainPs( PixelInput i ) : SV_Target0
+    {
         // Affine texture mapping
         i.vTextureCoords.xy /= lerp(1.0f, i.vPositionSs.w, g_flAffineAmount * 0.005f);
         
         Material m = GatherMaterial( i );
 
-		//
-		// Declare which shading model we are going to use to calculate lighting
-		// If you want to make a generalized shading model, inhering this class
-		// Is a good starting point.
-		// If not defined in FinalizePixelMaterial, it defaults to the standard
-		// Shading model.
-		//
+        //
+        // Declare which shading model we are going to use to calculate lighting
+        // If you want to make a generalized shading model, inhering this class
+        // Is a good starting point.
+        // If not defined in FinalizePixelMaterial, it defaults to the standard
+        // Shading model.
+        //
         
-		ShadingModelValveStandard sm;
-		PixelOutput o = FinalizePixelMaterial( i, m, sm );
+        ShadingModelValveStandard sm;
+        float4 vColor = FinalizePixelMaterial( i, m, sm );
 
-		#if ( S_MODE_TOOLS_VIS )
-		{
+        #if ( S_MODE_TOOLS_VIS )
+        {
             float3 vPositionWithOffsetWs = i.vPositionWithOffsetWs.xyz;
-		    float3 vPositionWs = i.vPositionWithOffsetWs.xyz + g_vHighPrecisionLightingOffsetWs.xyz;
+            float3 vPositionWs = i.vPositionWithOffsetWs.xyz + g_vHighPrecisionLightingOffsetWs.xyz;
             float3 vNormalWs = normalize( i.vNormalWs.xyz );
-			
-            ToolsVisInitColor( o.vColor.rgba );
+            
+            ToolsVisInitColor( vColor.rgba );
 
-			ToolsVisHandleFullbright( o.vColor.rgba, m.Albedo.rgb, vPositionWs.xyz, vNormalWs.xyz );
+            ToolsVisHandleFullbright( vColor.rgba, m.Albedo.rgb, vPositionWs.xyz, vNormalWs.xyz );
 
-			ToolsVisHandleAlbedo( o.vColor.rgba, m.Albedo.rgb );
-			ToolsVisHandleReflectivity( o.vColor.rgba, m.Albedo.rgb );
-		}
-		#endif
+            ToolsVisHandleAlbedo( vColor.rgba, m.Albedo.rgb );
+            ToolsVisHandleReflectivity( vColor.rgba, m.Albedo.rgb );
+        }
+        #endif
 
-		return o;
+        return vColor;
 
-	}
+    }
 }
