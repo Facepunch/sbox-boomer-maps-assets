@@ -1,9 +1,28 @@
 {
-  "cloud_packages": [
-    "facepunch.boomer#11100"
-  ],
-  "game_packages": [
-    "facepunch.boomer"
-  ],
-  "addon_packages": []
+  "publish": {
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "Dockyard",
+      "Type": "map",
+      "Org": "facepunch",
+      "Ident": "bm_dockyard",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "ResourcePaths": null,
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "facepunch.boomer"
+      ],
+      "Metadata": {
+        "SingleAssetSource": "maps/bm_dockyard.vmap",
+        "Summary": "",
+        "Description": "",
+        "Public": true
+      }
+    }
+  }
 }
